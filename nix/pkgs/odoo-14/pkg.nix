@@ -20,8 +20,8 @@ let
     };                                                         # (1)
 in poetry2nix.mkPoetryApplication rec {
   pname = "odoo14";
-  series = "14.0";
-  version = "${series}.20231205";
+  series = "16.0";
+  version = "${series}.20221012";
 
   src = fetchzip {
     url = "https://nightly.odoo.com/${series}/nightly/src/odoo_${version}.tar.gz";
