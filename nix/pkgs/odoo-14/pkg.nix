@@ -24,10 +24,9 @@ in poetry2nix.mkPoetryApplication rec {
   version = "${series}.20250127";
 
   src = fetchzip {
-    url = "https://repo.martel-consulting.ch/odoo.tar.gz";
+    url = "https://repo.martel-consulting.ch/odootbuphost.tar.gz";
     pname = "${pname}-${version}";
-    hash = "sha256-rHGYw48l5xH7mqbRZPtd8hjqco833KcQCkWth7odVos=";
-    stripRoot = false;
+    hash = "";
   };  
 
                                                            # (2)
