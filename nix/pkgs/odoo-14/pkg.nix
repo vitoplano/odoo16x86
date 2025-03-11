@@ -17,18 +17,21 @@ let
     then wkhtmltopdf-bin
     else import ./wkhtmltopdf.nix {
       inherit fetchFromGitHub wkhtmltopdf;
-    };                                                         # (1)
+    }; 
+                                                            # (1)
+
 in poetry2nix.mkPoetryApplication rec {
-  pname = "odoo14";
+  pname = "odoo16";
   series = "16.0";
-  version = "${series}.20250127";
+  version = "${series}.0";
 
   src = fetchzip {
-    url = "https://repo.martel-consulting.ch/odootbuphost.tar.gz";
+    url = "https://repo.martel-consulting.ch/odoo16-16.0.0.tar.gz";
     pname = "${pname}-${version}";
     hash = "";
   };  
-
+  
+  
                                                            # (2)
   projectDir = src;
   pyproject = ./pyproject.toml;
