@@ -17,30 +17,27 @@ let
     then wkhtmltopdf-bin
     else import ./wkhtmltopdf.nix {
       inherit fetchFromGitHub wkhtmltopdf;
-    }; 
-                                                            # (1)
-
+    };                                                         # (1)
 in poetry2nix.mkPoetryApplication rec {
   pname = "odoo16";
   series = "16.0";
-  version = "${series}.0";
+  version = "${series}.20230301";
 
   src = fetchzip {
-    url = "https://repo.martel-consulting.ch/odoo16-16.0.0.tar.gz";
+    url = "https://nightly.odoo.com/${series}/nightly/src/odoo_${version}.tar.gz";
     pname = "${pname}-${version}";
-    hash = "";
+    hash = "sha256-1Bm3es+bVyJedYY48SQghM3sXldsW8GZoBrSBG/WRgM=";
   };  
-  
-  
+
                                                            # (2)
   projectDir = src;
   pyproject = ./pyproject.toml;
   poetrylock = ./poetry.lock;
   python = python310;
 
-  patches = [
-    ./server.py.patch                                          # (3)
-  ];
+  # patches = [
+    # ./server.py.patch                                          # (3)
+  # ];
 
   doCheck = false;                                             # (4)
   dontStrip = true;                                            # (5)
