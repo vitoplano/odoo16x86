@@ -26,7 +26,7 @@ in poetry2nix.mkPoetryApplication rec {
   src = fetchzip {
     url = "https://nightly.odoo.com/${series}/nightly/src/odoo_${version}.tar.gz";
     pname = "${pname}-${version}";
-    hash = "sha256-1Bm3es+bVyJedYY48SQghM3sXldsW8GZoBrSBG/WRgM=";
+    hash = "sha256-Z4FhR4anUf21fDLYVTAIEciqM8q7IyHpRfKbSO6OMLo=";
   };  
 
                                                            # (2)
@@ -35,9 +35,9 @@ in poetry2nix.mkPoetryApplication rec {
   poetrylock = ./poetry.lock;
   python = python310;
 
-  # patches = [
-    # ./server.py.patch                                          # (3)
-  # ];
+   patches = [
+     ./server.py.patch                                          # (3)
+   ];
 
   doCheck = false;                                             # (4)
   dontStrip = true;                                            # (5)
