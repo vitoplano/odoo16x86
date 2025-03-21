@@ -81,20 +81,20 @@ in stdenv.mkDerivation rec {
       mkdir -p $out/timesheets_by_employee
       cp -rv ${src-timesheets-by-employee}/. $out/timesheets_by_employee
 
-      mkdir -p $out/download-attachments
-      cp -rv ${src-download-attachments}/. $out/download-attachments
+      mkdir -p $out/download_attachments
+      cp -rv ${src-download-attachments}/. $out/download_attachments
 
-      mkdir -p $out/hr-expense
-      cp -rv ${src-hr-expense}/. $out/hr-expense
+      mkdir -p $out/hr_expense
+      cp -rv ${src-hr-expense}/. $out/hr_expense
 
-      mkdir -p $out/custom-menu-style
-      cp -rv ${src-custom-menu-style}/. $out/custom-menu-style
+      mkdir -p $out/custom_menu_style
+      cp -rv ${src-custom-menu-style}/. $out/custom_menu_style
 
-      mkdir -p $out/timesheet-sheet-fullwidth
-      cp -rv ${src-timesheet-sheet-fullwidth}/. $out/timesheet-sheet-fullwidth
+      mkdir -p $out/timesheet_sheet_fullwidth
+      cp -rv ${src-timesheet-sheet-fullwidth}/. $out/timesheet_sheet_fullwidth
 
-      mkdir -p $out/custom-expense-limit
-      cp -rv ${src-custom-expense-limit}/. $out/custom-expense-limit
+      mkdir -p $out/custom_expense_limit
+      cp -rv ${src-custom-expense-limit}/. $out/custom_expense_limit
 
       mkdir -p $out/web
       cp -rv ${src-custom-web}/. $out/web
