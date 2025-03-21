@@ -84,8 +84,8 @@ in stdenv.mkDerivation rec {
       mkdir -p $out/download-attachments
       cp -rv ${src-download-attachments}/. $out/download-attachments
 
-      mkdir -p $out/hr-expense
-      cp -rv ${src-hr-expense}/. $out/hr-expense
+      mkdir -p $out/hr_expense
+      cp -rv ${src-hr-expense}/. $out/hr_expense
 
       mkdir -p $out/custom_menu_style
       cp -rv ${src-custom-menu-style}/. $out/custom_menu_style
