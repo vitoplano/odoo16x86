@@ -1,1 +1,1 @@
-{ pkgs }: pkgs.callPackage ./pkg.nix {}
+{ pkgs, odoo-pkg ? null }: pkgs.callPackage ./pkg.nix { inherit odoo-pkg; }
