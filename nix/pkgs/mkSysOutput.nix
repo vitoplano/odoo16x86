@@ -10,7 +10,7 @@
 }:
 let
   odoo = import ./odoo-14 { inherit system; pkgs = sysPkgs; };
-  addons = import ./odoo-addons { pkgs = sysPkgs; };
+  addons = import ./odoo-addons { pkgs = sysPkgs; odoo-pkg = odoo; };
   localhost-cert = import ./localhost-cert { pkgs = sysPkgs; };
   vaultgen = import ./vaultgen { pkgs = sysPkgs; };
   snakeoil-sec = import ./snakeoil-sec { pkgs = sysPkgs; inherit vaultgen; };

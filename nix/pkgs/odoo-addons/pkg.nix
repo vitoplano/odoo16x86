@@ -2,7 +2,7 @@
 # See `docs.md` for package documentation.
 #
 {
-    stdenv, fetchFromGitHub
+    stdenv, fetchFromGitHub, odoo-pkg ? null
 }:
 let
   vendor = fetchFromGitHub {                                   # (1)
@@ -75,6 +75,7 @@ in stdenv.mkDerivation rec {
     src-custom-web = custom-web;
 
     installPhase = ''
+      # Prima creiamo tutte le directory e copiamo i nostri addons personalizzati
       mkdir -p $out/hr_timesheet_overtime
       cp -rv ${src-hr-timesheet-overtime}/. $out/hr_timesheet_overtime
 
@@ -99,16 +100,36 @@ in stdenv.mkDerivation rec {
       mkdir -p $out/web
       cp -rv ${src-custom-web}/. $out/web
 
+      # Copiamo gli addons del fornitore
       cp -rv $src/vendor/addons/* $out
+      
+      # Creiamo symlink agli addons core di Odoo se odoo-pkg è fornito
+      if [ -n "${toString odoo-pkg}" ]; then
+        echo "Searching for core Odoo addons directory..."
+        
+        # Trova la directory degli addons di Odoo
+        for dir in $(find ${toString odoo-pkg} -path "*/site-packages/odoo/addons" -type d 2>/dev/null); do
+          ODOO_ADDONS_DIR="$dir"
+          echo "Found core Odoo addons at: $ODOO_ADDONS_DIR"
+          
+          # Itera su ogni addon nella directory standard
+          for addon in $(find "$ODOO_ADDONS_DIR" -maxdepth 1 -mindepth 1 -type d); do
+            addon_name=$(basename "$addon")
+            
+            # Crea symlink solo se non esiste già un addon con lo stesso nome
+            if [ ! -e "$out/$addon_name" ]; then
+              echo "Linking core addon: $addon_name"
+              ln -s "$addon" "$out/$addon_name"
+            else
+              echo "Custom addon with name $addon_name already exists, not linking core addon"
+            fi
+          done
+          
+          # Abbiamo trovato e processato la directory degli addons, usciamo dal ciclo
+          break
+        done
+      else
+        echo "odoo-pkg not provided, skipping core addons linking"
+      fi
     '';
 }
-# NOTE
-# ----
-# 1. Vendor addons. At the moment the sources for the various vendor
-# addons installed in Martel's prod Odoo are in this repo after being
-# copied over from prod. This is not the way to go, but rather a stop
-# gap solution. See #2.
-# 2. Release tags. Ideally we'd use release tags instead of revs. But
-# at the moment hr-timesheet-overtime and timesheets-by-employee don't
-# have a release process in place.
-#
