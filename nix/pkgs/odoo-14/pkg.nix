@@ -26,7 +26,7 @@ in poetry2nix.mkPoetryApplication rec {
   src = fetchzip {
     url = "https://repo.martel-consulting.ch/odoo-16.0.tar.gz";
     pname = "${pname}-${version}";
-    hash = "sha256-1axvramdb4vxv64spv1n1hlnmkbcxvq73hvbaih348gdl5z7arwf";
+    hash = "";
   };  
 
                                                            # (2)
