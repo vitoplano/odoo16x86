@@ -22,7 +22,7 @@ let
     owner = "Martel-IT";
     repo = "custom_timesheets_by_employee";
     rev = "Latest";          # (2)
-    sha256 = "sha256-xQ9ZIgOKn98CJ2rFLyo8NLaiVISdW1QSERjVltn4GxQ=";
+    sha256 = "sha256-z8OEvwsUikNU3x9TsBkMUPCnrVA7wsCIs25i+DguGuM=";
   };
   download-attachments = fetchFromGitHub {
     owner = "Martel-IT";
