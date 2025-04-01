@@ -24,9 +24,9 @@ in poetry2nix.mkPoetryApplication rec {
   version = "${series}.20230301";
 
   src = fetchzip {
-    url = "https://repo.martel-consulting.ch/odoo-16.0.tar.gz";
+    url = "https://repo.martel-consulting.ch/odoo-16.0.post20230301.tar.gz";
     pname = "${pname}-${version}";
-    hash = "sha256-DYDdSXpSkAAroApLXF8/FdQRjx5C2eweDTjz0bi56lU=";
+    hash = "sha256-fsKKqOmTHG0itI83PCvJkLbOeNzJc+Og9cIZF7NWbdY=";
   };  
 
                                                            # (2)
