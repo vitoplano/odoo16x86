@@ -21,16 +21,16 @@ let
 in poetry2nix.mkPoetryApplication rec {
   pname = "odoo16";
   series = "16.0";
-  version = "${series}.20230301";
+  version = "${series}.20230313";
 
   src = fetchzip {
-    url = "https://repo.martel-consulting.ch/odoo-16.0.post20230301.tar.gz";
-    pname = "${pname}-${version}";
-    hash = "sha256-fsKKqOmTHG0itI83PCvJkLbOeNzJc+Og9cIZF7NWbdY=";
+    url = "https://repo.martel-consulting.ch/odoo-16.0.post20230313.tar.gz";
+    sha256 = "sha256-4zyDEMWr6x+mU6Kfm+to3FxodbCBN0g627AbKo9XExg=";
+    stripRoot = false;
   };  
 
                                                            # (2)
-  projectDir = src;
+  projectDir = "${src}/odoo-16.0.post20230313";
   pyproject = ./pyproject.toml;
   poetrylock = ./poetry.lock;
   python = python310;

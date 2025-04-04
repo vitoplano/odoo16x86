@@ -8,8 +8,8 @@ let
   vendor = fetchFromGitHub {                                   # (1)
     owner = "vitoplano";
     repo = "odoo-16-addons";
-    rev = "odoo.box-vendor-addons-01-apr-2025";
-    sha256 = "sha256-Rxl66FZu1bCXtZ4Edbg7HNlyamyLx7dT/Me9bKdc+R4=";
+    rev = "odoo.box-vendor-addons-03-apr-2025";
+    sha256 = "sha256-Lt4xYrrB+mPk56/x5gMeQyPcyOjHFt7fZ8wv0h4MiIc=";
   };
 in stdenv.mkDerivation rec {
     pname = "odoo-addons";
@@ -22,7 +22,7 @@ in stdenv.mkDerivation rec {
       mkdir -p $out
       
       # Copiamo solo gli addons del fornitore
-      cp -rv $src/vendor/addons/* $out
+      cp -rv $src/* $out
       
       echo "Installed vendor addons only, no core addons linked"
     '';
